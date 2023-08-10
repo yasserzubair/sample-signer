@@ -28,7 +28,7 @@ const KeyValueInput = (props) => {
   };
 
 
-  const handleGenerateJSON = () => {
+  const handleGenerateJSON = async () => {
 
     const jsonData = {};
     data.forEach(item => {
@@ -38,7 +38,7 @@ const KeyValueInput = (props) => {
     });
     console.log(JSON.stringify(jsonData, null, 2)); // Display JSON in console
     const msgBytes = new TextEncoder().encode(JSON.stringify(jsonData))
-    const signature = wallet.signMessage({ message: msgBytes });
+    const signature = await wallet.signMessage({ message: msgBytes });
     console.log(signature)
     props.setSignature(signature)
   };
